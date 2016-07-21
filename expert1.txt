@@ -1,0 +1,127 @@
+
+antti@antti-HP-Compaq-dc7100-SFF-PE271ET ~/Prolog $ swipl
+Welcome to SWI-Prolog (Multi-threaded, 32 bits, Version 7.2.3)
+Copyright (c) 1990-2015 University of Amsterdam, VU Amsterdam
+SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software,
+and you are welcome to redistribute it under certain conditions.
+Please visit http://www.swi-prolog.org for details.
+
+For help, use ?- help(Topic). or ?- apropos(Word).
+
+?- ['expert1.pro'].
+Warning: /home/antti/Prolog/expert1.pro:65:
+	Singleton variables: [Y]
+Warning: /home/antti/Prolog/expert1.pro:95:
+	Singleton variables: [P]
+Warning: /home/antti/Prolog/expert1.pro:95:
+	Singleton variable in \+: P
+Warning: /home/antti/Prolog/expert1.pro:132:
+	Singleton variables: [Z]
+Warning: /home/antti/Prolog/expert1.pro:132:
+	Singleton variable in \+: Z
+Warning: /home/antti/Prolog/expert1.pro:178:
+	Singleton variables: [Y]
+Warning: /home/antti/Prolog/expert1.pro:182:
+	Singleton variables: [Y]
+true.
+
+?- expert.
+
+
+
+Is the starting engine silent? yes.
+
+Is the battery voltage under 11 volts? |: yes.
+
+malfunctions(car) BECAUSE 
+        needs(car,ignition_system) AND 
+        malfunctions(ignition_system)
+
+needs(car,ignition_system)
+
+malfunctions(ignition_system) BECAUSE 
+        needs(ignition_system,starting_engine) AND 
+        malfunctions(starting_engine)
+
+needs(ignition_system,starting_engine)
+
+malfunctions(starting_engine) BECAUSE 
+        needs(starting_engine,battery) AND 
+        malfunctions(battery)
+
+needs(starting_engine,battery)
+
+malfunctions(battery) BECAUSE 
+        immediately_faulty(battery)
+
+immediately_faulty(battery) BECAUSE 
+        symptom(discharged,battery) AND 
+        ~indirect(battery)
+
+symptom(discharged,battery)
+
+~indirect(battery)
+true 
+?- halt.
+antti@antti-HP-Compaq-dc7100-SFF-PE271ET ~/Prolog $ swipl
+Welcome to SWI-Prolog (Multi-threaded, 32 bits, Version 7.2.3)
+Copyright (c) 1990-2015 University of Amsterdam, VU Amsterdam
+SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software,
+and you are welcome to redistribute it under certain conditions.
+Please visit http://www.swi-prolog.org for details.
+
+For help, use ?- help(Topic). or ?- apropos(Word).
+
+?- ['expert1.pro'].
+Warning: /home/antti/Prolog/expert1.pro:65:
+	Singleton variables: [Y]
+Warning: /home/antti/Prolog/expert1.pro:95:
+	Singleton variables: [P]
+Warning: /home/antti/Prolog/expert1.pro:95:
+	Singleton variable in \+: P
+Warning: /home/antti/Prolog/expert1.pro:132:
+	Singleton variables: [Z]
+Warning: /home/antti/Prolog/expert1.pro:132:
+	Singleton variable in \+: Z
+Warning: /home/antti/Prolog/expert1.pro:178:
+	Singleton variables: [Y]
+Warning: /home/antti/Prolog/expert1.pro:182:
+	Singleton variables: [Y]
+true.
+
+?- expert.
+
+
+
+Is the starting engine silent? no.
+
+Is the battery voltage under 11 volts? |: no.
+
+Do any of the spark plugs fail to produce a spark? |: yes.
+
+malfunctions(car) BECAUSE 
+        needs(car,ignition_system) AND 
+        malfunctions(ignition_system)
+
+needs(car,ignition_system)
+
+malfunctions(ignition_system) BECAUSE 
+        needs(ignition_system,spark_plugs) AND 
+        malfunctions(spark_plugs)
+
+needs(ignition_system,spark_plugs)
+
+malfunctions(spark_plugs) BECAUSE 
+        immediately_faulty(spark_plugs)
+
+immediately_faulty(spark_plugs) BECAUSE 
+        symptom(worn_out,spark_plugs) AND 
+        ~indirect(spark_plugs)
+
+symptom(worn_out,spark_plugs)
+
+~indirect(spark_plugs)
+true 
+?- halt.
+antti@antti-HP-Compaq-dc7100-SFF-PE271ET ~/Prolog $
+
